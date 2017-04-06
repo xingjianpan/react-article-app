@@ -70,23 +70,24 @@ class SnippetListContainer extends Component {
     return (
       <div className="main">
         <Infinite
-          elementHeight={150}
-          containerHeight={300}
+          elementHeight={50}
           useWindowAsScrollContainer
-          infiniteLoadBeginEdgeOffset={60}
+          infiniteLoadBeginEdgeOffset={200}
           onInfiniteLoad={() =>{ this.handleInfiniteLoad(this.props.nextHref) }}
           loadingSpinnerDelegate={this.props.isInfiniteLoading && this.elementInfiniteLoad()}
           isInfiniteLoading={this.props.isInfiniteLoading}
           timeScrollStateLastsForAfterUserScrolls={1000}
 
         >
-          {this.props.articles.map(snippet =>
-            <ArticleLink
-              key={snippet.id}
-              {...snippet}
-              onClick={(id) => { browserHistory.push(`snippet/${snippet.id}`); }}
-            />,
-          )}
+          <ul className="list-group">
+            {this.props.articles.map(article =>
+              <ArticleLink
+                key={article.id}
+                {...article}
+                onClick={(id) => { browserHistory.push(`article/${article.id}`); }}
+              />,
+            )}
+          </ul>
         </Infinite>
         { this.renderEndOfList()}
       </div>
