@@ -9,7 +9,7 @@ import App from './components/App';
 import Signin from './components/Auth/Signin';
 import Signout from './components/Auth/Signout';
 import Signup from './components/Auth/Signup';
-
+import ArticleList from './containers/ArticleListContainer'
 import configureStore from './stores/configureStore';
 
 import { getUserDetails } from './actions';
@@ -41,7 +41,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={App}>
-        <IndexRoute component={App} />
+        <IndexRoute component={ArticleList} />
         <Route path="login" component={Signin} />
         <Route path="signout" component={Signout} />
         <Route path="signup" component={Signup} />

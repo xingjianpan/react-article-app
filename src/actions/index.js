@@ -1,5 +1,6 @@
 import { signupUser, signinUser, signoutUser, clearAuthError, getUserDetails } from './auth';
 import { hideNotification } from './notification';
+import { fetchList, setIgnoreLastFetch, infiniteLoad, resetList } from './article-list';
 
 
 export {
@@ -9,5 +10,8 @@ export {
   clearAuthError,
   getUserDetails,
   hideNotification,
-
+  fetchList,
+  setIgnoreLastFetch,
+  infiniteLoad,
+  resetList,
 };
