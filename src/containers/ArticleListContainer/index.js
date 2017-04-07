@@ -97,7 +97,10 @@ class SnippetListContainer extends Component {
     document.title = 'Economist';
     return (
       <div className="article-list">
-
+        <div>
+          {this.renderButton()}
+          <p />
+        </div>
           <ul className="list-group">
             {this.props.articles.map(article =>
               <ArticleLink
