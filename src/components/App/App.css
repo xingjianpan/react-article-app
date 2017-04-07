@@ -2,10 +2,17 @@
     font-family: 'Roboto', sans-serif;
 }
 
+.home-headline {
+    font-size: large;
+}
 .home-category {
-    background-color: #ccc;
+    padding-right: 20px;
+    font-size: medium;
 }
 
+.home-pubdate {
+    font-size: small;
+}
 .article-list {
     padding-top: 20px;
     width: 60%;
