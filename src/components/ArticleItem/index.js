@@ -1,11 +1,14 @@
 import React from 'react';
 
-
 const ArticleItem = ({ article }) => {
-  // console.log(snippet)
   return (
     <div className="article-page">
-      <h4>{article.headline}</h4>
+      <p className="flytitle">{article.fly_title}</p>
+      <h4 className="headline">{article.headline}</h4>
+      <p className="alternativename">{article.alternativename}</p>
+      <p className="pubdate">{article.pub_date.substring(0, 10)}</p>
+      <p className="category">{article.category}</p>
+      <div dangerouslySetInnerHTML={{ __html: article.content_dirty }} />
     </div>
   );
 };

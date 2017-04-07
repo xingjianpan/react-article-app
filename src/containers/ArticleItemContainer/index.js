@@ -26,7 +26,7 @@ class ArticleItemContainer extends Component {
     if (this.props.isLoading) {
       return <Loading type="bars" color="#e3e3e3" />;
     }
-    document.title = this.props.article.title;
+    document.title = this.props.article.headline;
     return (
       <div>
         <ArticleItem article={article} />
@@ -36,13 +36,12 @@ class ArticleItemContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { isLoading, article, hasErrored, highlightCode } = state.article;
+  const { isLoading, article, hasErrored } = state.articleItem;
   const { authenticated, user } = state.auth;
   // console.log(article)
   return {
     isLoading,
     article,
-    highlightCode,
     hasErrored,
     authenticated,
     user,

@@ -1,7 +1,7 @@
 import { signupUser, signinUser, signoutUser, clearAuthError, getUserDetails } from './auth';
 import { hideNotification } from './notification';
 import { fetchList, setIgnoreLastFetch, infiniteLoad, resetList } from './article-list';
-
+import { fetchItem } from './article';
 
 export {
   signupUser,
@@ -14,4 +14,5 @@ export {
   setIgnoreLastFetch,
   infiniteLoad,
   resetList,
+  fetchItem,
 };

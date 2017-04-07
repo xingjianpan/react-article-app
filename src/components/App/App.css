@@ -1,0 +1,48 @@
+.list-group-item {
+    font-family: 'Roboto', sans-serif;
+}
+
+.home-category {
+    background-color: #ccc;
+}
+.article-page {
+    padding-left: 20px;
+    width: 50%;
+    position: absolute;
+    left: 25%;
+    font-family: 'Roboto', sans-serif;
+}
+
+.flytitle {
+    color: #e3120b;
+    line-height: 1.35;
+}
+
+.xhead {
+    font-weight: 700;
+}
+.headline {
+    color: #121212;
+    line-height: 1.2;
+    font-weight: 500;
+    display: block;
+}
+
+.alternativename {
+    font-style: italic;
+    line-height: 1.4;
+}
+
+img {
+    padding-bottom: 30px;
+}
+
+a {
+    text-decoration: none;
+    color: #7a7a7a;
+}
+
+a:hover {
+    color: blue;
+    text-decoration: none;
+}

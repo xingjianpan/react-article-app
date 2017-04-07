@@ -9,7 +9,8 @@ import App from './components/App';
 import Signin from './components/Auth/Signin';
 import Signout from './components/Auth/Signout';
 import Signup from './components/Auth/Signup';
-import ArticleList from './containers/ArticleListContainer'
+import ArticleList from './containers/ArticleListContainer';
+import ArticleItem from './containers/ArticleItemContainer';
 import configureStore from './stores/configureStore';
 
 import { getUserDetails } from './actions';
@@ -42,6 +43,7 @@ ReactDOM.render(
     <Router history={history}>
       <Route path="/" component={App}>
         <IndexRoute component={ArticleList} />
+        <Route path="article/:articleId" component={ArticleItem} />
         <Route path="login" component={Signin} />
         <Route path="signout" component={Signout} />
         <Route path="signup" component={Signup} />
