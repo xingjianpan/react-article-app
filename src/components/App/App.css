@@ -5,11 +5,20 @@
 .home-category {
     background-color: #ccc;
 }
+
+.article-list {
+    padding-top: 20px;
+    width: 60%;
+    position: absolute;
+    left: 20%;
+}
+
 .article-page {
     padding-left: 20px;
-    width: 50%;
+    padding-bottom: 50px;
+    width: 40%;
     position: absolute;
-    left: 25%;
+    left: 20%;
     font-family: 'Roboto', sans-serif;
 }
 

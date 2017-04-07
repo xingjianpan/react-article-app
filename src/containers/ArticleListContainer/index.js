@@ -6,7 +6,9 @@ import { Link } from 'react-router';
 import { browserHistory } from 'react-router';
 import { fetchList, setIgnoreLastFetch, hideNotification, infiniteLoad, resetList } from '../../actions';
 import ArticleLink from '../../components/ArticleLink';
-
+// icons
+import ArrowRight from 'react-icons/lib/fa/angle-double-right';
+import ArrowLeft from 'react-icons/lib/fa/angle-double-left';
 
 class SnippetListContainer extends Component {
   componentDidMount() {
@@ -59,6 +61,32 @@ class SnippetListContainer extends Component {
     return ;
   }
 
+  fetchMore(url) {
+    this.props.fetchList(url);
+  }
+
+  renderButton() {
+    if (this.props.nextHref && this.props.prevHref) {
+      return (
+        <div>
+          <span>
+            <a href="#" onClick={() => { this.fetchMore(this.props.prevHref); }}>
+              <ArrowLeft />
+            </a>
+          </span>
+          <span className="page-control">
+            <a href="#" onClick={() => { this.fetchMore(this.props.nextHref); }}>
+              <ArrowRight />
+            </a>
+          </span>
+        </div>
+      );
+    } else if (this.props.nextHref) {
+      return <a href="#" onClick={() => { this.fetchMore(this.props.nextHref); }}><ArrowRight /></a>
+    }
+    return <p>没有新闻了。</p>;
+  }
+
   render() {
     if (this.props.hasErrored) {
       return <p>Sorry, we cannot retrieve any articles, please refresh。</p>;
@@ -68,17 +96,8 @@ class SnippetListContainer extends Component {
     }
     document.title = 'Economist';
     return (
-      <div className="main">
-        <Infinite
-          elementHeight={50}
-          useWindowAsScrollContainer
-          infiniteLoadBeginEdgeOffset={200}
-          onInfiniteLoad={() =>{ this.handleInfiniteLoad(this.props.nextHref) }}
-          loadingSpinnerDelegate={this.props.isInfiniteLoading && this.elementInfiniteLoad()}
-          isInfiniteLoading={this.props.isInfiniteLoading}
-          timeScrollStateLastsForAfterUserScrolls={1000}
+      <div className="article-list">
 
-        >
           <ul className="list-group">
             {this.props.articles.map(article =>
               <ArticleLink
@@ -88,7 +107,10 @@ class SnippetListContainer extends Component {
               />,
             )}
           </ul>
-        </Infinite>
+        <div>
+          {this.renderButton()}
+          <p />
+        </div>
         { this.renderEndOfList()}
       </div>
     );
