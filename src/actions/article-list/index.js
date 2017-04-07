@@ -48,51 +48,15 @@ export const fetchList = (url = `${ARTICLE_LIST_URL}/`) => {
   };
 };
 
-export const infiniteLoadSuccess = (response) => {
-  return {
-    type: actionTypes.INFINITE_LOAD_SUCCESS,
-    payload: response,
-  };
-};
 
 
-export const infiniteLoadFailed = (bool) => {
+export const setIgnoreLastFetch = (bool) => {
   return {
-    type: actionTypes.INFINITE_LOAD_FAIL,
+    type: actionTypes.SET_IGNORE_LAST_FETCH,
     payload: bool,
   };
 };
 
-export const infiniteLoading = (bool) => {
-  return {
-    type: actionTypes.INFINITE_IS_LOADING,
-    payload: bool,
-  };
-};
-
-export const infiniteLoadEndOfList = (response) => {
-  return {
-    type: actionTypes.INFINITE_LOAD_END_OF_LIST,
-    payload: response,
-  };
-};
-
-export const infiniteLoad = (url = `${ARTICLE_LIST_URL}/`) => {
-  return (dispatch) => {
-    dispatch(infiniteLoading(true));
-    const token = getToken();
-    axios.get(url, token)
-      .then((response) => {
-        if (response.data.next) {
-          dispatch(infiniteLoadSuccess(response));
-        } else {
-          dispatch(infiniteLoadEndOfList(response));
-        }
-      })
-      .catch(() => dispatch(infiniteLoadFailed(true)))
-      ;
-  };
-};
 
 export const resetList = () => {
   return {

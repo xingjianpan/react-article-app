@@ -17,39 +17,11 @@ class SnippetListContainer extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    // console.log('start---------------------');
-    // console.log('nextProps:', nextProps);
-    // console.log('thisProps:', this.props);
-    // console.log('end---------------------');
-  }
-
-
-  componentDidUpdate(prevProps) {
-    const oldUrl = prevProps.targetUrl;
-    const newUrl = this.props.targetUrl;
-
-    if (oldUrl !== newUrl) {
-      // console.log('will update');
-      this.props.resetList();
-      this.props.fetchList(this.props.targetUrl);
-    }
-  }
-
   componentWillUnmount() {
-    // console.log('will unmount');
-    this.props.resetList();
+    // this.props.resetNewsList();
+    this.props.setIgnoreLastFetch(true);
   }
 
-  handleInfiniteLoad(url) {
-    if (this.props.hasMoreToLoad) {
-      this.props.infiniteLoad(url);
-    }
-  }
-
-  elementInfiniteLoad() {
-    return <div className="infinite-list-item"> Loading... </div>;
-  }
 
   renderEndOfList() {
     if (!this.props.hasMoreToLoad) {
@@ -123,7 +95,7 @@ class SnippetListContainer extends Component {
 const mapStateToPros = (state) => {
   const { articles, isLoading, hasErrored,
           nextHref, prevHref,
-          isInfiniteLoading, hasMoreToLoad,
+          ignoreLastFetch, hasMoreToLoad,
         } = state.articleList;
   const { isActive, message, action } = state.notifications;
 
@@ -136,7 +108,7 @@ const mapStateToPros = (state) => {
     isActive,
     message,
     action,
-    isInfiniteLoading,
+    ignoreLastFetch,
     hasMoreToLoad,
   };
 };

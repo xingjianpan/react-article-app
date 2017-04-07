@@ -9,7 +9,7 @@ const INITIAL_STATE = {
   nextHref: null,
   prevHref: null,
   error: '',
-  isInfiniteLoading: false,
+  ignoreLastFetch: false,
   hasMoreToLoad: true,
   infiniteLoadHasError: false,
 };
@@ -26,28 +26,14 @@ export default (state = INITIAL_STATE, action) => {
         isLoading: false,
         nextHref: action.payload.data.next,
         prevHref: action.payload.data.previous,
+        ignoreLastFetch: false,
       };
     case actionTypes.FETCH_LIST_FAILED:
       return { ...state, hasErrored: true };
     case actionTypes.RESET_LIST:
       return INITIAL_STATE;
-
-    case actionTypes.INFINITE_IS_LOADING:
-      return { ...state, isInfiniteLoading: action.payload };
-    case actionTypes.INFINITE_LOAD_SUCCESS:
-      return { ...state,
-        isInfiniteLoading: false,
-        articles: [...state.articles, ...action.payload.data.results],
-        nextHref: action.payload.data.next,
-      };
-    case actionTypes.INFINITE_LOAD_END_OF_LIST:
-      return { ...state,
-        isInfiniteLoading: false,
-        hasMoreToLoad: false,
-        articles: [...state.articles, ...action.payload.data.results],
-      };
-    case actionTypes.INFINITE_LOAD_FAIL:
-      return { ...state, infiniteLoadHasError: true };
+    case actionTypes.SET_IGNORE_LAST_FETCH:
+      return { ...state, ignoreLastFetch: true };
     default:
       return { ...state };
   }
